@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -11,6 +12,8 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements  SensorEventListener {
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements  SensorEventListe
     private Sensor sensorAccelerometer, sensorGravity, sensorGyroscope, sensorRotationVector, sensorStepCounter;
 
     TextView textViewAccelerometer, textViewGravity, textViewGyroscope, textViewRotationVector, textViewStepCounter;
+    Button btnSignificant;
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -77,6 +81,16 @@ public class MainActivity extends AppCompatActivity implements  SensorEventListe
         textViewRotationVector.setMovementMethod(new ScrollingMovementMethod());
         textViewStepCounter = findViewById(R.id.textViewStepCounter);
         textViewStepCounter.setMovementMethod(new ScrollingMovementMethod());
+
+        btnSignificant = findViewById(R.id.buttonSignificant);
+
+        btnSignificant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SignificantMovementActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
